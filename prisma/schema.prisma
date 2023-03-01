@@ -21,7 +21,7 @@ model Employee {
 model WorkDay {
   id             String    @id @default(uuid())
   employee_id    String
-  work_day_start DateTime
+  work_day_start DateTime  @unique
   work_day_end   DateTime?
   employee       Employee  @relation(fields: [employee_id], references: [id])
 
