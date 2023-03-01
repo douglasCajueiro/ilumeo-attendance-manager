@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id       String    @id @default(uuid())
+  code     String    @unique
+  workDays WorkDay[]
+
+  @@map("employees")
+}
+
+model WorkDay {
+  id             String    @id @default(uuid())
+  employee_id    String
+  work_day_start DateTime
+  work_day_end   DateTime?
+  employee       Employee  @relation(fields: [employee_id], references: [id])
+
+  @@map("work_days")
+}
