@@ -10,24 +10,30 @@ async function main() {
     });
 
     const employee2 = await prisma.employee.upsert({
-        where: { code: "Somebody" },
+        where: { code: "TestUser" },
         update: {},
-        create: { code: "Somebody" }
+        create: { code: "TestUser" }
+    });
+
+    const employee3 = await prisma.employee.upsert({
+        where: { code: "TestUser2" },
+        update: {},
+        create: { code: "TestUser2" }
     });
 
     const employee1WorkDays = [];
 
     const workDaysSeed = [
         {
-            work_day_start: new Date(2023, 2, 25, 9, 0),
-            work_day_end: new Date(2023, 2, 25, 17, 0)
+            work_day_start: new Date(2023, 1, 25, 9, 0),
+            work_day_end: new Date(2023, 1, 25, 17, 0)
         }, {
-            work_day_start: new Date(2023, 2, 26, 9, 0),
-            work_day_end: new Date(2023, 2, 26, 17, 0)
+            work_day_start: new Date(2023, 1, 26, 9, 0),
+            work_day_end: new Date(2023, 1, 26, 17, 0)
         },
         , {
-            work_day_start: new Date(2023, 2, 27, 9, 0),
-            work_day_end: new Date(2023, 2, 27, 17, 0)
+            work_day_start: new Date(2023, 1, 27, 9, 0),
+            work_day_end: new Date(2023, 1, 27, 17, 0)
         }
     ]
 
@@ -44,7 +50,7 @@ async function main() {
         employee1WorkDays.push(workDay)
     })
 
-    console.log({ employee1, employee2, employee1WorkDays });
+    console.log({ employee1, employee2, employee3, employee1WorkDays });
 }
 
 main()
